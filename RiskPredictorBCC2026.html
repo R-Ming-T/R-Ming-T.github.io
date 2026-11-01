@@ -67,14 +67,53 @@
                                     datasets: [{
                                         label: 'Percentage of Individuals over 65 by Year',
                                         data: dataVals,
-                                        tension: 0.2,
-                                        borderColor: '#1B7A85',
-                                        pointBorderColor: '#00A5B8',
+                                        tension: 0.1,
+                                        borderColor: '#84D7E0',
+                                        borderWidth: '3px',
+                                        pointRadius: 0,
+                                        // pointBorderColor: '#00A5B8',
+                                        pointHoverRadius: '5px',
                                         pointHoverBackgroundColor: '#00A5B8',
-                                        pointHoverBorderColor: '#00A5B8'
+                                        pointHoverBorderColor: '#00A5B8',
+                                        
                                     }]
                                 },
                                 options: {
+                                    scales: {
+                                    x: {
+                                        // Grid lines configuration
+                                        grid: {
+                                        color: '#00A5B8',  // Color of the grid lines
+                                        borderColor: '#00A5B8',            // Color of the main axis line (axis border)
+                                        tickColor: '#00A5B8',              // Color of the small ticks extending past the axis line
+                                        },
+                                        // Text/Labels configuration
+                                        ticks: {
+                                        color: '#00A5B8',                  // Color of the axis labels (e.g., 'January', 'February')
+                                        },
+                                        // Axis Title configuration
+                                        title: {
+                                        display: true,
+                                        text: 'Years',
+                                        color: '#00A5B8',                  // Color of the overall axis title text
+                                        }
+                                    },
+                                    y: {
+                                        grid: {
+                                        color: '#00A5B8', // Different grid color for Y axis if desired
+                                        borderColor: '#00A5B8',
+                                        tickColor: '#00A5B8',
+                                        },
+                                        ticks: {
+                                        color: '#00A5B8',
+                                        },
+                                        title: {
+                                        display: true,
+                                        text: 'Percentage',
+                                        color: '#00A5B8',
+                                        }
+                                    }
+                                    },
                                     responsive: true
                                 }
                             });
