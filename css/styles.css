@@ -92,3 +92,10 @@ ol.emphasized li {
     font-size: 19px;
     line-height: 1.8;
 }
+div.graph {
+    width: 80%; 
+    margin: auto;
+    border-style: double;
+    border-radius: 3px;
+    border-color: #84d7e0;
+}
