@@ -1,5 +1,5 @@
-export function renderChart(labels, dataVals, canvasName, title, xlabel, ylabel) {
-    const ctx = document.getElementById('AgingSocietyGraph').getContext('2d');
+export function renderChart(labels, dataVals, canvasName, title, xlabel, ylabel, beginYAt=0) {
+    const ctx = document.getElementById(canvasName).getContext('2d');
     new Chart(ctx, {
         type:'line',
         data: {
@@ -21,7 +21,7 @@ export function renderChart(labels, dataVals, canvasName, title, xlabel, ylabel)
                 legend: {display: false},
                 title: {
                     display: true,
-                    text: 'Percentage of Population over 65 by Year',
+                    text: title,
                     color: '#ffffff',                 // Color of the main title text
                     position: 'top',                  // 'top', 'left', 'bottom', or 'right'
                     align: 'center',                  // 'start', 'center', or 'end'
@@ -52,7 +52,7 @@ export function renderChart(labels, dataVals, canvasName, title, xlabel, ylabel)
                     // Axis Title configuration
                     title: {
                         display: true,
-                        text: 'Years',
+                        text: xlabel,
                         color: '#FFFFFF',                  // Color of the overall axis title text
                     }
                 },
@@ -67,9 +67,10 @@ export function renderChart(labels, dataVals, canvasName, title, xlabel, ylabel)
                     },
                     title: {
                         display: true,
-                        text: 'Percentage',
+                        text: ylabel,
                         color: '#FFFFFF',
-                    }
+                    },
+                    min: beginYAt
                 }
             },
             responsive: true
