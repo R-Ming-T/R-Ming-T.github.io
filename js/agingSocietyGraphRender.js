@@ -1,6 +1,6 @@
 import { renderChart } from './chartRenderer.js';
 
-fetch('./Data/WorldAgingData.json')
+fetch('../Data/WorldAgingData.json')
 .then(response => {
     if (!response.ok) {
         throw new Error("Network response was not alright " + response.statusText);
