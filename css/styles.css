@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    margin: 0;
+    background: #0B0F0F;
+    color: #FFFFFF;
+}
+header {
+    background: linear-gradient(120deg, #1F3133, #00A5B8);
+    padding-top: 60px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+}
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+section {
+    background: #16292B;
+    border-radius: 9px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+section h2{
+    margin-top: 0;
+    padding-left: 50px;
+    color: #00a5b8
+}
+footer {
+    padding: 24px;
+    text-align: left;
+    background: linear-gradient(120deg, #1F3133, #1b7a85);
+    font-size: 0.9rem
+}
+a {
+    color: #84d7e0;
+}
