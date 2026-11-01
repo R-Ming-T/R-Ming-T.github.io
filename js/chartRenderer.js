@@ -43,11 +43,11 @@ export function renderChart(labels, dataVals, canvasName, title, xlabel, ylabel,
                     grid: {
                     color: '#00A5B8',  // Color of the grid lines
                     borderColor: '#00A5B8',            // Color of the main axis line (axis border)
-                    tickColor: '#00A5B8',              // Color of the small ticks extending past the axis line
+                    tickColor: '#84d7e0',              // Color of the small ticks extending past the axis line
                     },
                     // Text/Labels configuration
                     ticks: {
-                        color: '#00A5B8',                  // Color of the axis labels (e.g., 'January', 'February')
+                        color: '#84d7e0',                  // Color of the axis labels (e.g., 'January', 'February')
                     },
                     // Axis Title configuration
                     title: {
@@ -60,10 +60,10 @@ export function renderChart(labels, dataVals, canvasName, title, xlabel, ylabel,
                     grid: {
                         color: '#00A5B8', // Different grid color for Y axis if desired
                         borderColor: '#00A5B8',
-                        tickColor: '#00A5B8',
+                        tickColor: '#84d7e0',
                     },
                     ticks: {
-                        color: '#00A5B8',
+                        color: '#84d7e0',
                     },
                     title: {
                         display: true,
