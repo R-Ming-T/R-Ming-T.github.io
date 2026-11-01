@@ -42,39 +42,41 @@
                     the year going from 1960 to 2025 (UN Population Division, n.d.).</small></p>
                 </div>
                 <script>
-                    fetch('./Data/WorldAgingData.json')
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Network response was not alright " + response.statusText);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        const years = data.map(item => item.years);
-                        const values = data.map(item => item.values);
-
-                        renderChart(years, values)
-                    })
-                    .catch(error => console.error("Error loading JSON data:", error));
-
-                    function renderChart(labels, dataVals) {
-                        const ctx = document.getElementById('AgingSocietyGraph').getContext('2d');
-                        new Chart(ctx, {
-                            type:'line',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    label: 'Percentage of Individuals over 65 by Year',
-                                    data: dataVals,
-                                    borderColor: 'rgb(54, 162, 235)',
-                                    tension: 0.2
-                                }]
-                            },
-                            options: {
-                                responsive: true
+                    document.addEventListener("DOMContentLoaded", () => {
+                        fetch('./Data/WorldAgingData.json')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("Network response was not alright " + response.statusText);
                             }
-                        });
-                    }
+                            return response.json();
+                        })
+                        .then(data => {
+                            const years = data.map(item => item.years);
+                            const values = data.map(item => item.values);
+
+                            renderChart(years, values)
+                        })
+                        .catch(error => console.error("Error loading JSON data:", error));
+
+                        function renderChart(labels, dataVals) {
+                            const ctx = document.getElementById('AgingSocietyGraph').getContext('2d');
+                            new Chart(ctx, {
+                                type:'line',
+                                data: {
+                                    labels: labels,
+                                    datasets: [{
+                                        label: 'Percentage of Individuals over 65 by Year',
+                                        data: dataVals,
+                                        borderColor: 'rgb(54, 162, 235)',
+                                        tension: 0.2
+                                    }]
+                                },
+                                options: {
+                                    responsive: true
+                                }
+                            });
+                        }
+                    });
                 </script>
             </section>
             <section>
