@@ -51,8 +51,8 @@
                             return response.json();
                         })
                         .then(data => {
-                            const years = data.map(item => item.years);
-                            const values = data.map(item => item.values);
+                            const years = data.years;
+                            const values = data.values;
 
                             renderChart(years, values)
                         })
