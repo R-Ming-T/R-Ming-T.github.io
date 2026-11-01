@@ -6,11 +6,12 @@ body {
     margin: 0;
     background: #0B0F0F;
     color: #FFFFFF;
+    font-size: 16px;
 }
 header {
     background: linear-gradient(120deg, #1F3133, #00A5B8);
     padding-top: 60px;
-    padding-bottom: 10px;
+    padding-bottom: 7px;
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
@@ -19,7 +20,6 @@ main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
-    flex: 1;
 }
 section {
     background: #16292B;
@@ -28,16 +28,67 @@ section {
     margin-bottom: 24px;
 }
 section h2{
-    margin-top: 0;
-    padding-left: 50px;
-    color: #00a5b8
+    margin-top: 1em;
+    padding-bottom: 1em;
+    color: #00a5b8;
+    text-align: center;
+}
+section h2.hasNote{
+    padding-bottom: 0em;
 }
 footer {
     padding: 24px;
     text-align: left;
     background: linear-gradient(120deg, #1F3133, #1b7a85);
-    font-size: 0.9rem
+    font-size: 0.9rem;
 }
 a {
     color: #84d7e0;
+}
+p {
+    text-indent: 2em;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 1em;
+}
+p:last-child {
+    text-indent: 2em;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 0em;
+}
+p.note {
+    text-align: center;
+    text-indent: 2em;
+    font-size: 0.925em;
+    font-style: italic;
+    padding-top: 0em;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 2em;
+}
+h3 {
+    text-align: center;
+    font-size: 1.1em;
+    font-style: normal;
+    padding-top: 0em;
+    padding-bottom: 0em;
+    padding-left: 2em;
+    padding-right: 2em;
+    color: #84d7e0;
+}
+section.fitContent {
+    margin-right: auto;
+    margin-left: auto;
+    width: fit-content;
+}
+ol li {
+    padding-left: 7px;
+}
+ol.emphasized {
+    padding-left: 2em;
+}
+ol.emphasized li {
+    font-size: 19px;
+    line-height: 1.8;
 }
