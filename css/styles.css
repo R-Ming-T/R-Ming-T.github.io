@@ -200,3 +200,9 @@ div.subPoint {
     border-color: #00a5b8;
     padding-top: 1em;
 }
+.closeToNext {
+    padding-bottom: 0em;
+}
+ol li {
+    padding-left: 1em;
+}
