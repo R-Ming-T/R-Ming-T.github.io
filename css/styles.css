@@ -165,6 +165,7 @@ button.topButton {
     border: 1px solid #84d7e0;
     outline: none;
     background-color: #1f3133;
+    align-items: center;
     color: #ffffff;
     cursor: pointer;
     width: 2.5em;
