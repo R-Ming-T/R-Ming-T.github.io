@@ -20,12 +20,16 @@
                 <ol class="emphasized">
                     <li><a href="#Introduction">Introduction</a></li>
                     <li><a href="#Background">Background</a></li>
-                    <li><a href="#MachineLearningExplanation">Machine Learning Basics</a>
+                    <li><a href="#MachineLearningExplanation">General Machine Learning Basics</a>
                     <ol>
                         <li><a href="#preprocessing">Preprocessing</a></li>
                         <li><a href="#modelSelection">Model Selection</a></li>
                         <li><a href="#modelTraining">Model Training</a></li>
                         <li><a href="modelEval">Model Evaluation</a></li>
+                    </ol></li>
+                    <li><a href="#MyPreprocessing">Preprocessing</a>
+                    <ol>
+                        <li><a href="#Data">Data</a></li>
                     </ol></li>
                     <li><a href="#Acknowledgements">Acknowledgements</a></li>
                     <li><a href="#References">References</a></li>
@@ -96,7 +100,7 @@
                 </p>
             </section>
             <section>
-                <h2 id="#MachineLearningExplanation">Machine Learning Basics</h2>
+                <h2 id="#MachineLearningExplanation">General Machine Learning Basics</h2>
                 <p>
                     Moving on to the creation of the "solution" that came as the product of the goal, 
                     I would like to begin by providing a brief overview of the necessary background for 
@@ -176,14 +180,68 @@
                 <div class="subPoint">
                     <h3 id="modelTraining">Model Training</h3>
                     <p>
-                        lorem ipsum
+                        Model training is the part where the previous steps come together. 
+                        This is where the processed data is fed into the chosen model, and the model 
+                        adjusts its own parameters to gain the desired result as set forth in the project goals.
                     </p>
                 </div>
                 <div class="subPoint">
                     <h3 id="modelEval">Model Evaluation</h3>
                     <p>
-                        lorem ipsum
+                        This step is done in tandem with model training, moving back and forth depending on the 
+                        previous iteration's results. In model evaluation, it is tested how well the model generalizes 
+                        to a dataset it was not shown during training using various metrics, such as its accuracy, 
+                        its <span class="extraInfo" title="The fraction of the times the model predicted a certain class correctly over the total times the model predicted a certain class.">precision</span>, or its 
+                        <span class="extraInfo" title="The fraction of the times the model predicted a class correctly over the total number of times the class occurs in the dataset.">recall</span>. 
+                        After each evaluation, the model's <span class="extraInfo" title="Configurable parts of a model's learning process (Wikipedia, (n.d.).)">hyperparameters</span> are adjusted to best fulfill the goals.
                     </p>
+                </div>
+            </section>
+            <section>
+                <h2 id="MyPreprocessing">Preprocessing</h2>
+                <p>
+                    After the summary of the model creation process above, to better understand the steps of the preprocessing that took place, 
+                    let us view a brief overview of the data.
+                </p>
+                <div class="subPoint">
+                    <h3 id="Data">Data Overview</h3>
+                    <p class="closeToNext">
+                        The dataset came in a format where data from different categories were placed in separate files, with each row in all files summarizing one visit, identified by a personal ID and 
+                        visit date. All in all, there were seven files:
+                    </p>
+                    <ol>
+                        <li>Current medication</li>
+                        <li>Family dementia history</li>
+                        <li>Medical history in categories (<span class="extraInfo" title="Each category was marked with either true or false, meaning that the individual has had a prior condition in each category.">one-hot encoded</span>)</li>
+                        <li><span class="extraInfo" title="Year of birth, gender, handedness, etc">Demographics</span></li>
+                        <li><span class="extraInfo" title="A 10-minute cognitive test with a perfect score of 30.">Montreal Cognitive Assessment</span> (MoCA)</li>
+                        <li><span class="extraInfo" title="A numeric scale measured by a health professional through a structured-interview used to assess the stage of dementia based on symptom severity.">Clinical Dementia Rating</span> (CDR)</li>
+                        <li><span class="extraInfo" title="Records if the individual at a certain point in time was cognitively unimpaired, mildly cognitively impaired, or had developed any form of dementia.">Diagnosis</span></li>
+                    </ol>
+                </div>
+                <p>
+                    After the goal was decided, the first action taken was preprocessing of the dataset which can be broken down into three parts, 
+                    data filtering, general processing, and data imputation.
+                </p>
+                <p>
+                    Beginning with data filtration, a large number of features in each file  
+                    had large swathes of missing data. While data imputation can handle this, with a lower number of examples filled in, 
+                    the imputation procedure used in this project would not have been sustainable. As such, most of these features were removed. Aside from that, 
+                    there were some features that were redundant together, such as the year of birth versus the date of birth, as such one would would be dropped.
+                    Other features removed were features that could not be processed within the chosen model without large amounts of feature creation, such as the individual's occupation 
+                    which was recorded in a text form. Finally, cognitively unimpaired individuals and individuals who did not have at leaast some data in all 7 files were removed as they were not the target of the model.
+                </p>
+                <p>
+                    Next, the general processing stage had miscellaneous techniques that cannot be neatly categorized. There were two main segments to the processing done in this part. 
+                    First, I one-hot encoded many of the columns that had not already been one-hot encoded in the dataset itself. This includes gender, dominant hand, and most importantly the medication dataset. 
+                    For the medication dataset, I extracted each individual medication an individual was taking in a period of time, and summarized it into a single row with each medication as its own feature. 
+                    Second, I added a column to the visits showing if the individual developed dementia with two years of said visit as shown in the figure below.
+                </p>
+                <div class="imgContainer">
+                    <img src="images/stableTransitionProcessDiagram.svg" alt="A diagram showing the process of marking a visit as stable or transitioned.">
+                    <p><small>
+                        <i>Note.</i> This figure is a diagram showing the process of marking a visit as stable/transitioned.
+                    <small></p>
                 </div>
             </section>
             <section>
@@ -231,6 +289,7 @@
                 <p>Murel, J. & Kavlakoglu E. (n.d.). <i>What are classification models?</i> Retrieved November 2, 2026, from <a href="https://www.ibm.com/think/topics/classification-models">https://www.ibm.com/think/topics/classification-models</a></p>
                 <p>Organisation for Economic Co-operation and Development. (2025, November 27). <i>Pensions at a glance 2025.</i> Retrieved November 2, 2026, from <a href="https://www.oecd.org/en/publications/2025/11/pensions-at-a-glance-2025_76510fe4/full-report/current-retirement-ages_0f63b747.html">https://www.oecd.org/en/publications/2025/11/pensions-at-a-glance-2025_76510fe4/full-report/current-retirement-ages_0f63b747.html</a></p>
                 <p>UN Population Division. (n.d.). <i>World Population Prospects.</i> World Bank Open Data. Retrieved November 1, 2026, from <a href="https://data.worldbank.org/indicator/SP.POP.65UP.TO.ZS">https://data.worldbank.org/indicator/SP.POP.65UP.TO.ZS</a></p>
+                <p>Wikipedia. (n.d.). <i>Hyperparameter (machine learning)</i> Retrieved November 2, 2026, from <a href="https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning)">https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning)</a></p>
                 <p>World Federation of Neurology. (n.d.). <i>The Global Impact of Brain Diseases and Disorders.</i> Retrieved November 2, 2026, from <a href="https://wfneurology.org/activities/brain-health-initiative/the-global-impact-of-brain-diseases-and-disorders">https://wfneurology.org/activities/brain-health-initiative/the-global-impact-of-brain-diseases-and-disorders</a></p>
                 <p>World Health Organization. (2024, March 14). <i>Over 1 in 3 people affected by neurological conditions, the leading cause of illness and disability worldwide.</i> Retrieved November 2, 2026, from <a href="https://www.who.int/news/item/14-03-2024-over-1-in-3-people-affected-by-neurological-conditions--the-leading-cause-of-illness-and-disability-worldwide">https://www.who.int/news/item/14-03-2024-over-1-in-3-people-affected-by-neurological-conditions--the-leading-cause-of-illness-and-disability-worldwide</a></i></p>
             </section>
