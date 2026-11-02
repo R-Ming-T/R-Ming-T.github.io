@@ -41,7 +41,7 @@ function initMapChart() {
     });
 
     chartInstance = new Chart(ctx, {
-        type='choropleth',
+        type:'choropleth',
         data: {
             labels: globalGeomFeatures.map(c=> c.properties.name),
             datasets: [{
