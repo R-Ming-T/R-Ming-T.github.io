@@ -8,7 +8,7 @@ Promise.all([
     fetch('../Data/AllCountryAgingData.json').then(r => r.json())
 ])
 .then(([topoData, agingData]) => {
-    globalGeomFeatures = topojson.feature(topoData, topoData.objects.countries).features;
+    globalGeomFeatures = ChartGeo.topojson.feature(topoData, topoData.objects.countries).features;
     externalTimelineData = agingData
 
     const availableYears = Object.keys(externalTimelineData).map(Number).sort((a, b) => a - b);
@@ -43,7 +43,7 @@ function initMapChart() {
     chartInstance = new Chart(ctx, {
         type:'choropleth',
         data: {
-            labels: globalGeomFeatures.map(c=> c.properties.name),
+            labels: globalGeomFeatures.map((d) => d.properties.name),
             datasets: [{
                 label: 'Aging Metrics Index',
                 data: mapData
