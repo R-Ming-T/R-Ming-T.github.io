@@ -4,7 +4,7 @@ let currentYear = 2025;
 let globalGeomFeatures = null;
 
 Promise.all([
-    fetch('https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js').then(r => r.json()),
+    topojson,
     fetch('../Data/AllCountryAgingData.json').then(r => r.json())
 ])
 .then(([topoData, agingData]) => {
