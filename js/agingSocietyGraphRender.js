@@ -30,7 +30,7 @@ Promise.all([
 });
 
 function initMapChart() {
-    const ctx = document.getElementById('agingMapCanvas').getContext('2d');
+    const ctx = document.getElementById('AgingSocietyGraph').getContext('2d');
     const mapData = globalGeomFeatures.map(country => {
         const name = country.properties.name;
         const yearSlice = externalTimelineData[currentYear] || {};
