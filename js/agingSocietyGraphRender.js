@@ -1,12 +1,10 @@
-import ChartGeo from 'chartjs-chart-geo'
-
 let chartInstance = null;
 let externalTimelineData = null;
 let currentYear = 2025;
 let globalGeomFeatures = null;
 
 Promise.all([
-    fetch('../Data/countries-50m.json').then(r => r.json()),
+    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(r => r.json()),
     fetch('../Data/AllCountryAgingData.json').then(r => r.json())
 ])
 .then(([topoData, agingData]) => {
@@ -48,7 +46,8 @@ function initMapChart() {
             labels: globalGeomFeatures.map((d) => d.properties.name),
             datasets: [{
                 label: 'Aging Metrics Index',
-                data: mapData
+                data: mapData,
+                borderColor: '#FFFFFF'
             }]
         },
         options: {
@@ -75,8 +74,8 @@ function initMapChart() {
                     interpolate: 'blues',
                     quantize: 0,
                     legend: {
-                        position: 'bottom',
-                        align: 'center'
+                        position: 'left',
+                        align: 'right'
                     }
                 }
             }
@@ -96,7 +95,7 @@ function updateTimelineYear(year) {
     if (chartInstance && externalTimelineData) {
         const yearSlice = externalTimelineData[currentYear] || {};
 
-        chartInstance.data.datasets[0].data -= chartInstance.data.datasets[0].data.map(item => {
+        chartInstance.data.datasets[0].data = chartInstance.data.datasets[0].data.map(item => {
             const countryName = item.feature.properties.name;
             return {
                 feature: item.feature,
@@ -104,6 +103,6 @@ function updateTimelineYear(year) {
             };
         });
 
-        chartInstance.update('none');
+        chartInstance.update();
     }
 }
