@@ -33,7 +33,7 @@ section h2{
     color: #00a5b8;
     text-align: center;
 }
-section h2.hasNote{
+.hasNote{
     padding-bottom: 0em;
 }
 footer {
@@ -58,7 +58,7 @@ p:last-child {
     padding-left: 20px;
     padding-bottom: 0em;
 }
-p.note {
+.note {
     text-align: center;
     text-indent: 2em;
     font-size: 0.925em;
