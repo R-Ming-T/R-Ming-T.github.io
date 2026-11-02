@@ -1,3 +1,5 @@
+import ChartGeo from 'chartjs-chart-geo'
+
 let chartInstance = null;
 let externalTimelineData = null;
 let currentYear = 2025;
