@@ -5,7 +5,7 @@ let globalGeomFeatures = null;
 
 Promise.all([
     fetch('https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js').then(r => r.json()),
-    fetch('../Data/AllCountryAgingData.json')
+    fetch('../Data/AllCountryAgingData.json').then(r => r.json())
 ])
 .then(([topoData, agingData]) => {
     globalGeomFeatures = topojson.feature(topoData, topoData.objects.countries).features;
@@ -25,7 +25,7 @@ Promise.all([
     initMapChart();
 })
 .catch(err => {
-    document.getElementById('status').innerText = 'Error loading dataset: ${err.message}.'
+    document.getElementById('status').innerText = `Error loading dataset: ${err.message}.`;
     console.error(err);
 });
 
@@ -58,7 +58,7 @@ function initMapChart() {
                         label: (context) => {
                             const name = context.element.feature.properties.name;
                             const val = context.raw.value;
-                            return "${name}: ${val !== null ? val : 'No Data Available'}";
+                            return `${name}: ${val !== null ? val : 'No Data Available'}`;
                         }
                     }
                 }
