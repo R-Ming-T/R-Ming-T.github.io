@@ -4,7 +4,7 @@ let currentYear = 2025;
 let globalGeomFeatures = null;
 
 Promise.all([
-    topojson,
+    fetch('https://app.unpkg.com/world-atlas@2.0.2/files/countries-50m.json').then(r => r.json()),
     fetch('../Data/AllCountryAgingData.json').then(r => r.json())
 ])
 .then(([topoData, agingData]) => {
