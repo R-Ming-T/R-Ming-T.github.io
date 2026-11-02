@@ -20,7 +20,13 @@
                 <ol class="emphasized">
                     <li><a href="#Introduction">Introduction</a></li>
                     <li><a href="#Background">Background</a></li>
-                    <li><a href="#MachineLearningExplanation">Solution Overview</a>
+                    <li><a href="#MachineLearningExplanation">Machine Learning Basics</a>
+                    <ol>
+                        <li><a href="#preprocessing">Preprocessing</a></li>
+                        <li><a href="#modelSelection">Model Selection</a></li>
+                        <li><a href="#modelTraining">Model Training</a></li>
+                        <li><a href="modelEval">Model Evaluation</a></li>
+                    </ol></li>
                     <li><a href="#Acknowledgements">Acknowledgements</a></li>
                     <li><a href="#References">References</a></li>
                 </ol>
@@ -90,7 +96,7 @@
                 </p>
             </section>
             <section>
-                <h2 id="#MachineLearningExplanation">Solution Overview</h2>
+                <h2 id="#MachineLearningExplanation">Machine Learning Basics</h2>
                 <p>
                     Moving on to the creation of the "solution" that came as the product of the goal, 
                     I would like to begin by providing a brief overview of the necessary background for 
@@ -109,52 +115,76 @@
                     fluid, one can continue by obtaining and processing the data, and then selecting a model to suit that data, 
                     or one can select a model and then find and process suitable data for that model instead. 
                 </p>
-                <p>
-                    Whichever path is chosen, both steps remain equally important. To the model, the data is like a building's foundations. With low quality data, 
-                    a well-performing model cannot be formed, however, even starting with poorer quality data, with 
-                    careful "cleaning" the data's quality can be improved. This is known as preprocessing. While 
-                    there are a variety of interesting techniques that can be covered on that topic, this is the 
-                    background section, thus we shall move on to model selection instead. If more information about preprocessing is desired,
-                    Wikipedia and GeeksForGeeks have more in-depth explanations <a href="https://en.wikipedia.org/wiki/Data_preprocessing">here</a> 
-                    and <a href="https://www.geeksforgeeks.org/data-analysis/data-preprocessing-machine-learning-python/">here</a> respectively.
-                </p>
-                <p>
-                    Next, to cover model selection, there are three basic types of machine learning models, 
-                    supervised learning models, unsupervised learning models, and reinforcement learning models. 
-                    supervised learning models is when data is given to the model where the "label" that is the goal 
-                    of the model's creation is included with the data. There are two main types of supervised learning models,
-                    classification models and regression models, with each type completing a different task. Moving on to unsupervised learning models, 
-                    they are the antithesis of supervised learning models, being models where data is given without the "label". 
-                    They have a lot more categories than supervised learning models, so it would take too much space to list them all, 
-                    but an example would be clustering where if datapoints were plotted in an n-dimensional space, the points near each other 
-                    would be categorized as groups. Finally, reinforcement learning models are based on principles 
-                    similar to behaviorism from behavioral psychology and B.F. Skinner's experiments on operant conditioning. 
-                    During training, the models' choices are either reinforced or punished until the final results 
-                    are as desired. As this project's models were all supervised learning models, the next section will focus on 
-                    supervised learning models only.
-                </p>
-                <p>
-                    As stated above, supervised learning models can be divided into two main types, classification 
-                    models and regression models, however the two types do overlap on occasion, for example logistic regression models 
-                    which is a classifier derived from linear regression models (Murel & Kavlakoglu, n.d.). Classification models split data into categories, 
-                    such as sorting animals into mammals, avians, reptiles, amphibians, and fish. Some examples of classification 
-                    models are the aforementioned linear regression model, decision trees, and random decision forests.
-                    Regression models, on the other hand, predict a number, such as if a model 
-                    were given a person's address, age, gender, and other general information, the 
-                    model would output their predicted income. Some examples of regression models area linear regression models, 
-                    polynomial regression models, and ridge and lasso regression.
-                </p>
-                <div class="imgContainer">
-                    <img src="images/decisionTreeDiagram.svg" alt="Simple diagram of decision trees">
+                <div class="subPoint">
+                    <h3 id="preprocessing">Preprocessing</h3>
                     <p>
-                        <i>Note.</i> This figure illustrates the simplified design of decision trees where green arrows symbolize that the condition was true and red arrows symbolize that the condition was false.
+                        Whichever path is chosen, both steps remain equally important. To the model, the data is like a building's foundations. With low quality data, 
+                        a well-performing model cannot be formed, however, even starting with poorer quality data, with 
+                        careful "cleaning" the data's quality can be improved. This is known as preprocessing. While 
+                        there are a variety of interesting techniques that can be covered on that topic, this is the 
+                        background section, thus we shall move on to model selection instead. If more information about preprocessing is desired,
+                        Wikipedia and GeeksForGeeks have more in-depth explanations <a href="https://en.wikipedia.org/wiki/Data_preprocessing">here</a> 
+                        and <a href="https://www.geeksforgeeks.org/data-analysis/data-preprocessing-machine-learning-python/">here</a> respectively.
                     </p>
                 </div>
-                <p>
-                    Focusing more on decision trees and random decision forests for a moment, decision trees 
-                    are similar to flowcharts in design, as they are composed of branching paths where the end 
-                    of each path are the classes that are classified.  
-                </p>
+                <div class="subPoint">
+                    <h3 id="modelSelection">Model Selection</h3>
+                    <p>
+                        Next, to cover model selection, there are three basic types of machine learning models, 
+                        supervised learning models, unsupervised learning models, and reinforcement learning models. 
+                        supervised learning models is when data is given to the model where the "label" that is the goal 
+                        of the model's creation is included with the data. There are two main types of supervised learning models,
+                        classification models and regression models, with each type completing a different task. Moving on to unsupervised learning models, 
+                        they are the antithesis of supervised learning models, being models where data is given without the "label". 
+                        They have a lot more categories than supervised learning models, so it would take too much space to list them all, 
+                        but an example would be clustering where if datapoints were plotted in an n-dimensional space, the points near each other 
+                        would be categorized as groups. Finally, reinforcement learning models are based on principles 
+                        similar to behaviorism from behavioral psychology and B.F. Skinner's experiments on operant conditioning. 
+                        During training, the models' choices are either reinforced or punished until the final results 
+                        are as desired. As this project's models were all supervised learning models, the next section will focus on 
+                        supervised learning models only.
+                    </p>
+                    <p>
+                        As stated above, supervised learning models can be divided into two main types, classification 
+                        models and regression models, however the two types do overlap on occasion, for example logistic regression models 
+                        which is a classifier derived from linear regression models (Murel & Kavlakoglu, n.d.). Classification models split data into categories, 
+                        such as sorting animals into mammals, avians, reptiles, amphibians, and fish. Some examples of classification 
+                        models are the aforementioned linear regression model, decision trees, and random decision forests.
+                        Regression models, on the other hand, predict a number, such as if a model 
+                        were given a person's address, age, gender, and other general information, the 
+                        model would output their predicted income. Some examples of regression models area linear regression models, 
+                        polynomial regression models, and ridge and lasso regression.
+                    </p>
+                    <div class="imgContainer">
+                        <img src="images/decisionTreeDiagram.svg" alt="Simple diagram of decision trees">
+                        <p>
+                            <i>Note.</i> This figure illustrates the simplified design of decision trees where green arrows symbolize that the condition was true and red arrows symbolize that the condition was false.
+                        </p>
+                    </div>
+                    <p>
+                        Focusing more on decision trees and random decision forests for a moment, decision trees 
+                        are similar to flowcharts in design, as they are composed of branching paths where the end 
+                        of each path are the classes that are classified. When a decision tree is trained, 
+                        the model chooses the conditions based on algorithms depending on the <a href="https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning)" title="Wikipedia article on hyperparameters">hyperparameters</a>, 
+                        however decision trees are often biased, disproportionately predicting one class over the other or 
+                        <span class="extraInfo" title="A phenomenon where a model memorizes a dataset to the point where it cannot handle actual use. An example would be if a calculator had the values for 1+1, 1+2, 1+3 recorded one-by-one, if someone asked what 1+4 was, the calculator would fail completely.">overfitting</span> 
+                        on training data. This brings us to random decision forests which, as its name suggests, contains a "forest" of 
+                        decision trees. What random forests lose in simplicity of interpretation, they gain in robustness against bias and overfitting. 
+                        The models used in this project are random forest and other <span class="extraInfo" title="Models composed of multiple trees">tree-based ensemble models</span>. 
+                    </p>
+                </div>
+                <div class="subPoint">
+                    <h3 id="modelTraining">Model Training</h3>
+                    <p>
+                        lorem ipsum
+                    </p>
+                </div>
+                <div class="subPoint">
+                    <h3 id="modelEval">Model Evaluation</h3>
+                    <p>
+                        lorem ipsum
+                    </p>
+                </div>
             </section>
             <section>
                 <h2 id="Acknowledgements" class="hasNote">Acknowledgements</h2>
@@ -193,7 +223,7 @@
                 </p>
             </section>
             <section class="fitContent">
-                <h3>Thank you for taking the time to read this post.</h3>
+                <h4>Thank you for taking the time to read this post.</h4>
             </section>
             <section>
                 <h2 id="References">References</h2>
