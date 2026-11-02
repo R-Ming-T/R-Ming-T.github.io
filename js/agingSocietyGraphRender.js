@@ -1,5 +1,3 @@
-import { renderChart } from './chartRenderer.js';
-
 let chartInstance = null;
 let externalTimelineData = null;
 let currentYear = 2025;
