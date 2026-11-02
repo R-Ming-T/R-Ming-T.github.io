@@ -245,7 +245,10 @@
                 </div>
                 <p>
                     Finally, in the data imputation stage, I replaced missing values in the data with other values depending upon 
-                    what fits best in the feature's context. 
+                    what fits best in the feature's context. For example, there was a feature that recorded if an individual has ever smoked 
+                    and a separate feature recording how many years they smoked. If an individual has never smoked, it follows that they would have smoked for 
+                    0 years. For features with similar logical relationships, I set their values to be in relation to the other. On the other hand, 
+                    for features without obvious connections to each other, they would be set to the average value of other datapoints in the same <span class="extraInfo" title="stable/transitioned">class</span>
                 </p>
             </section>
             <section>
