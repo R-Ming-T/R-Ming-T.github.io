@@ -22,7 +22,7 @@ export function renderChart(labels, dataVals, canvasName, title, xlabel, ylabel,
                 title: {
                     display: true,
                     text: title,
-                    color: '#ffffff',                 // Color of the main title text
+                    // color: '#ffffff',                 // Color of the main title text
                     position: 'top',                  // 'top', 'left', 'bottom', or 'right'
                     align: 'center',                  // 'start', 'center', or 'end'
                     font: {
@@ -41,34 +41,34 @@ export function renderChart(labels, dataVals, canvasName, title, xlabel, ylabel,
                 x: {
                     // Grid lines configuration
                     grid: {
-                    color: '#00A5B8',  // Color of the grid lines
-                    borderColor: '#00A5B8',            // Color of the main axis line (axis border)
-                    tickColor: '#84d7e0',              // Color of the small ticks extending past the axis line
+                    // color: '#00A5B8',  // Color of the grid lines
+                    // borderColor: '#00A5B8',            // Color of the main axis line (axis border)
+                    // tickColor: '#84d7e0',              // Color of the small ticks extending past the axis line
                     },
                     // Text/Labels configuration
                     ticks: {
-                        color: '#84d7e0',                  // Color of the axis labels (e.g., 'January', 'February')
+                        // color: '#84d7e0',                  // Color of the axis labels (e.g., 'January', 'February')
                     },
                     // Axis Title configuration
                     title: {
                         display: true,
                         text: xlabel,
-                        color: '#FFFFFF',                  // Color of the overall axis title text
+                        // color: '#FFFFFF',                  // Color of the overall axis title text
                     }
                 },
                 y: {
                     grid: {
-                        color: '#00A5B8', // Different grid color for Y axis if desired
-                        borderColor: '#00A5B8',
-                        tickColor: '#84d7e0',
+                        // color: '#00A5B8', // Different grid color for Y axis if desired
+                        // borderColor: '#00A5B8',
+                        // tickColor: '#84d7e0',
                     },
                     ticks: {
-                        color: '#84d7e0',
+                        // color: '#84d7e0',
                     },
                     title: {
                         display: true,
                         text: ylabel,
-                        color: '#FFFFFF',
+                        // color: '#FFFFFF',
                     },
                     min: beginYAt
                 }
