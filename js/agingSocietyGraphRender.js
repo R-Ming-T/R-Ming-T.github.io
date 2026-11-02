@@ -40,7 +40,7 @@ function initMapChart() {
         };
     });
 
-    chartInstance = newChart(ctx, {
+    chartInstance = new Chart(ctx, {
         type='choropleth',
         data: {
             labels: globalGeomFeatures.map(c=> c.properties.name),
