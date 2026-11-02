@@ -94,8 +94,14 @@
                 <p>
                     Moving on to the creation of the "solution" that came as the product of the goal, 
                     I would like to begin by providing a brief overview of the necessary background for 
-                    the coming segments.
+                    the coming segments. (This section is only a very basic overview; it can be completely skipped if the reader is well-versed in the topic)
                 </p>
+                <div class="imgContainer" id="generalProcessOverviewSVG">
+                    <img src="images/generalProcessOverview.svg" alt="General overview of the process of creating a machine learning model">
+                    <p><small>
+                        <i>Note.</i> This figure is an illustration of the process outlined in the paragraphs below.
+                    </small></p>
+                </div>
                 <p>
                     The process of creating a machine learning model can be distilled down into a few interconnected points. 
                     In most situations, the first order of business, is to make arguably the most important decision of all: deciding 
@@ -114,24 +120,40 @@
                 </p>
                 <p>
                     Next, to cover model selection, there are three basic types of machine learning models, 
-                    Supervised Learning models, Unsupervised Learning models, and Reinforcement Learning models. 
-                    Supervised Learning models is when data is given to the model where the "label" that is the goal 
-                    of the model's creation is included with the data. Supervised Learning models can be divided into two 
-                    main types, classification models and regression models. Classification models split data into 
-                    categories, such as sorting animals into mammals, avians, reptiles, amphibians, and fish. Regression models, on the other hand, 
-                    predict a number out, such as if a model were given a person's address, age, gender, and other general 
-                    information, the model would output their predicted income. Moving on to Unsupervised Learning models, 
-                    they are the antithesis of Supervised Learning models, being models where data is given without the "label". 
-                    They have a lot more categories than Supervised Learning models, but an example would be 
-                    clustering where if datapoints were plotted in an n-dimensional space, the points near each other 
-                    would be categorized as groups. Finally, Reinforcement Learning models are based on principles 
+                    supervised learning models, unsupervised learning models, and reinforcement learning models. 
+                    supervised learning models is when data is given to the model where the "label" that is the goal 
+                    of the model's creation is included with the data. There are two main types of supervised learning models,
+                    classification models and regression models, with each type completing a different task. Moving on to unsupervised learning models, 
+                    they are the antithesis of supervised learning models, being models where data is given without the "label". 
+                    They have a lot more categories than supervised learning models, so it would take too much space to list them all, 
+                    but an example would be clustering where if datapoints were plotted in an n-dimensional space, the points near each other 
+                    would be categorized as groups. Finally, reinforcement learning models are based on principles 
                     similar to behaviorism from behavioral psychology and B.F. Skinner's experiments on operant conditioning. 
                     During training, the models' choices are either reinforced or punished until the final results 
-                    are as desired. As this project's models were all Supervised Learning models, the next section will focus on 
-                    Supervised Learning models only.
+                    are as desired. As this project's models were all supervised learning models, the next section will focus on 
+                    supervised learning models only.
                 </p>
                 <p>
-
+                    As stated above, supervised learning models can be divided into two main types, classification 
+                    models and regression models, however the two types do overlap on occasion, for example logistic regression models 
+                    which is a classifier derived from linear regression models (Murel & Kavlakoglu, n.d.). Classification models split data into categories, 
+                    such as sorting animals into mammals, avians, reptiles, amphibians, and fish. Some examples of classification 
+                    models are the aforementioned linear regression model, decision trees, and random decision forests.
+                    Regression models, on the other hand, predict a number, such as if a model 
+                    were given a person's address, age, gender, and other general information, the 
+                    model would output their predicted income. Some examples of regression models area linear regression models, 
+                    polynomial regression models, and ridge and lasso regression.
+                </p>
+                <div class="imgContainer">
+                    <img src="images/decisionTreeDiagram.svg" alt="Simple diagram of decision trees">
+                    <p>
+                        <i>Note.</i> This figure illustrates the simplified design of decision trees where green arrows symbolize that the condition was true and red arrows symbolize that the condition was false.
+                    </p>
+                </div>
+                <p>
+                    Focusing more on decision trees and random decision forests for a moment, decision trees 
+                    are similar to flowcharts in design, as they are composed of branching paths where the end 
+                    of each path are the classes that are classified.  
                 </p>
             </section>
             <section>
@@ -176,6 +198,7 @@
             <section>
                 <h2 id="References">References</h2>
                 <p>Alzheimer's Society. (n.d.). <i>Risk factors for Alzheimer's disease.</i> Retrieved November 1, 2026, from <a href="https://www.alzheimers.org.uk/about-dementia/types-dementia/who-gets-alzheimers-disease">https://www.alzheimers.org.uk/about-dementia/types-dementia/who-gets-alzheimers-disease</a></p>
+                <p>Murel, J. & Kavlakoglu E. (n.d.). <i>What are classification models?</i> Retrieved November 2, 2026, from <a href="https://www.ibm.com/think/topics/classification-models">https://www.ibm.com/think/topics/classification-models</a></p>
                 <p>Organisation for Economic Co-operation and Development. (2025, November 27). <i>Pensions at a glance 2025.</i> Retrieved November 2, 2026, from <a href="https://www.oecd.org/en/publications/2025/11/pensions-at-a-glance-2025_76510fe4/full-report/current-retirement-ages_0f63b747.html">https://www.oecd.org/en/publications/2025/11/pensions-at-a-glance-2025_76510fe4/full-report/current-retirement-ages_0f63b747.html</a></p>
                 <p>UN Population Division. (n.d.). <i>World Population Prospects.</i> World Bank Open Data. Retrieved November 1, 2026, from <a href="https://data.worldbank.org/indicator/SP.POP.65UP.TO.ZS">https://data.worldbank.org/indicator/SP.POP.65UP.TO.ZS</a></p>
                 <p>World Federation of Neurology. (n.d.). <i>The Global Impact of Brain Diseases and Disorders.</i> Retrieved November 2, 2026, from <a href="https://wfneurology.org/activities/brain-health-initiative/the-global-impact-of-brain-diseases-and-disorders">https://wfneurology.org/activities/brain-health-initiative/the-global-impact-of-brain-diseases-and-disorders</a></p>
