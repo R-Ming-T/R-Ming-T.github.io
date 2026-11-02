@@ -11,6 +11,6 @@ fetch('../Data/WorldAgingData.json')
     const years = data.years;
     const values = data.values;
 
-    renderChart(years, values, 'AgingSocietyGraph', 'Percentage of Population over 65 by Year', 'Year', 'Percentage')
+    renderChart(years, values, 'AgingSocietyWorldGraph', 'Percentage of Population over 65 by Year', 'Year', 'Percentage')
 })
 .catch(error => console.error("Error loading JSON data:", error));
