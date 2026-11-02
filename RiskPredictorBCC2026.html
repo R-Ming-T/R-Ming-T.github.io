@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Risk Predictor for Progression of Alzheimer's Disease/Dementia</title>
         <link rel="stylesheet" href="css/styles.css" type="text/css">
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
         <header>
@@ -49,7 +48,12 @@
                     of people over 65 is growing over the years.
                 </p>
                 <div class="graph">
+                    <div id="status" class="loading-status">Loading global atlas and aging data datasets...</div>
                     <canvas id="AgingSocietyGraph"></canvas>
+                    <div class="controls">
+                        <div class="slider-label">Year: <span id="yearDisplay">-</span></div>
+                        <input type="range" id="yearSlider" min="1960" max="2025" step="1">
+                    </div>
                     <p><small><i>Note.</i> This figure contains the percentage of the world's population over 65 in relation to
                     the year going from 1960 to 2025 (UN Population Division, n.d.).</small></p>
                 </div>
@@ -102,6 +106,10 @@
         <footer>
             <a href="index.html">Back to landing page</a>
         </footer>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src = "js/chart-defaults.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+        <script src="https://cdn.jsdeliver.net/npm/chartjs-chart-geo@4.3.6/build/index.umd.min.js"></script>
         <script src='js/chartRenderer.js'></script>
         <script type=module src='js/agingSocietyGraphRender.js'></script>
     </body>
