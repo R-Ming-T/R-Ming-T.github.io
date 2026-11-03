@@ -21,16 +21,31 @@
                     <li><a href="#Introduction">Introduction</a></li>
                     <li><a href="#Background">Background</a></li>
                     <li><a href="#MachineLearningExplanation">General Machine Learning Basics</a>
-                    <ol>
-                        <li><a href="#preprocessing">Preprocessing</a></li>
-                        <li><a href="#modelSelection">Model Selection</a></li>
-                        <li><a href="#modelTraining">Model Training</a></li>
-                        <li><a href="modelEval">Model Evaluation</a></li>
-                    </ol></li>
+                        <ol>
+                            <li><a href="#preprocessing">Preprocessing</a></li>
+                            <li><a href="#modelSelection">Model Selection</a></li>
+                            <li><a href="#modelTraining">Model Training</a></li>
+                            <li><a href="modelEval">Model Evaluation</a></li>
+                        </ol>
+                    </li>
                     <li><a href="#MyPreprocessing">Preprocessing</a>
-                    <ol>
-                        <li><a href="#Data">Data</a></li>
-                    </ol></li>
+                        <ol>
+                            <li><a href="#Data">Data</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="#MyModelSelection">Model Selection</a>
+                        <ol>
+                            <li><a href="#rfexpl">Random Decision Forests</a></li>
+                            <li><a href="#LightGBMexpl">Light Gradient Boosting Models (LightGBM)</a></li>
+                            <li><a href="#XGBoostexpl">Extreme Gradient Boosting Models (XGBoost)</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="#ModelTrainingMain">Model Training & Evaluation</a>
+                        <ol>
+                            <li><a href="#myModelEvaluation">Model Evaluation</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="#SHAP">SHapley Additive eXplanations (SHAP)</a></li>
                     <li><a href="#Acknowledgements">Acknowledgements</a></li>
                     <li><a href="#References">References</a></li>
                 </ol>
@@ -40,7 +55,7 @@
                 <p>
                     For this endeavour, rather than the final model(s) creation being the end 
                     goal, the models themselves are merely means to fulfill the primary goal: 
-                    to create a transparent method to predict if an individual with mild 
+                    to create a transparent* method to predict if an individual with mild 
                     cognitive impairment will develop dementia within two years, using 
                     relatively affordable data. As such, even in the final stages of the 
                     project, major changes are still being made in order to satisfy the 
@@ -50,6 +65,9 @@
                     As my group's TAs said, my project is more of an engineering challenge rather
                     than a scientific experiment as such the process differ accordingly.
                 </p>
+                <p><small>
+                    *Transparent in this case means that the Python library named SHAP will be implemented to see the model weights for each feature for a given decision.
+                </small></p>
             </section>
             <section>
                 <h2 id="Background">Background</h2>
@@ -193,7 +211,7 @@
                         to a dataset it was not shown during training using various metrics, such as its accuracy, 
                         its <span class="extraInfo" title="The fraction of the times the model predicted a certain class correctly over the total times the model predicted a certain class.">precision</span>, or its 
                         <span class="extraInfo" title="The fraction of the times the model predicted a class correctly over the total number of times the class occurs in the dataset.">recall</span>. 
-                        After each evaluation, the model's <span class="extraInfo" title="Configurable parts of a model's learning process (Wikipedia, (n.d.).)">hyperparameters</span> are adjusted to best fulfill the goals.
+                        After each evaluation, the model's <span class="extraInfo" title="Configurable parts of a model's learning process (Wikipedia, n.d.)">hyperparameters</span> are adjusted to best fulfill the goals.
                     </p>
                 </div>
             </section>
@@ -207,7 +225,7 @@
                     <h3 id="Data">Data Overview</h3>
                     <p class="closeToNext">
                         The dataset came in a format where data from different categories were placed in separate files, with each row in all files summarizing one visit, identified by a personal ID and 
-                        visit date. All in all, there were seven files:
+                        visit date. All in all, there were seven files selected for the project:
                     </p>
                     <ol>
                         <li>Current medication</li>
@@ -218,6 +236,10 @@
                         <li><span class="extraInfo" title="A numeric scale measured by a health professional through a structured-interview used to assess the stage of dementia based on symptom severity.">Clinical Dementia Rating</span> (CDR)</li>
                         <li><span class="extraInfo" title="Records if the individual at a certain point in time was cognitively unimpaired, mildly cognitively impaired, or had developed any form of dementia.">Diagnosis</span></li>
                     </ol>
+                    <p>
+                        The data that was chosen was all specifically picked for the sake of the affordability of data mentioned in the project goals. 
+                        All seven files are items that are either typically within patient files from the start, such as current medication or medical history, or <span class="extraInfo" title="MoCA and CDR are both used within memory and geriatric clinics. Even if they haven't already been collected, MoCA takes 10 minutes to administer and CDR takes up to an hour. Compared to other kinds of data such as MRI scans which wrap up hospital machinery, they are more affordable.">commonly collected</span>, such as MoCA and CDR. 
+                    </p>
                 </div>
                 <p>
                     After the goal was decided, the first action taken was preprocessing of the dataset which can be broken down into three parts, 
@@ -249,6 +271,112 @@
                     and a separate feature recording how many years they smoked. If an individual has never smoked, it follows that they would have smoked for 
                     0 years. For features with similar logical relationships, I set their values to be in relation to the other. On the other hand, 
                     for features without obvious connections to each other, they would be set to the average value of other datapoints in the same <span class="extraInfo" title="stable/transitioned">class</span>.
+                </p>
+            </section>
+            <section>
+                <h2 id="MyModelSelection">Model Selection</h2>
+                <p>
+                    In this project, three different machine learning models were used, random decision forests, light gradient boosting models, and extreme gradient boosting models. 
+                    All of them are <span class="extraInfo" title="Models composed of multiple decision trees where each tree weighs in on the final answer.">tree-based ensemble models</span>, 
+                    chosen for their ability to "understand" nonlinear relationships as most of the data used is categorical.
+                </p>
+                <div class="subPoint">
+                    <h3 id="rfexpl">Random Decision Forests (RF)</h3>
+                    <p>
+                        RF models are one of the basic types of models often taught in introductory machine learning classes. This is because their 
+                        underlying mechanics are relatively simple to grasp and visualize. An RF model is composed of multiple decision trees where each tree 
+                        builds independently of and parallel to the others and the final answer is arrived at through a similar mechanic to a vote between trees. 
+                        RF models are grown by level, meaning that when the model builds the decision trees, they increase the depth uniformly, resulting in symmetric trees. 
+                        A main benefit of RF is that models of this type are rather resistant to <span class="extraInfo" title="Memorizing the training data until it cannot handle actual use">overfitting</span> since the individual biases of the decision trees tend to cancel themselves out.
+                    </p>
+                </div>
+                <div class="subPoint">
+                    <h3 id="LightGBMexpl">Light Gradient Boosting Models (LightGBM)</h3>
+                    <p>
+                        Unlike RF models, the decision trees inside LightGBM models are built sequentially, with the next tree focusing specifically on 
+                        correcting the errors of the next one. This specific technique is the boosting part in the name of this model type and XGBoost. 
+                        Due to this technique, LightGBM models have a higher ceiling for accuracy than RF models. LightGBM models are different from the other two model types in that they grow in a way known as 
+                        <span class="extraInfo" title="the model focuses on splitting the branch with the maximum benefit, resulting in asymmetric trees with branches of different depth."> leaf-wise growth</span> during the building of each decision tree. 
+                        However, since these models grow in this way, they are particularly susceptible to <span class="extraInfo" title="Memorizing the training data until it cannot handle actual use">overfitting</span>.
+                    </p>
+                </div>
+                <div class="subPoint">
+                    <h3 id="XGBoostexpl">Extreme Gradient Boosting Models (XGBoost)</h3>
+                    <p>
+                        XGBoost models is similar to being a midpoint between RF models and LightGBM models, being a boosting model like LightGBM and a model-type that grows 
+                        by level like RF models. They are more vulnerable to overfitting than RF models, but less so than LightGBM models.
+                    </p>
+                </div>
+            </section>
+            <section>
+                <h2 id="ModelTrainingMain" class="hasNote">Model Training & Evaluation</h2>
+                <p class="note">
+                    Model training and model evaluation are inextricably intertwined. Before a model is finalized, one must move back and forth between the two 
+                    steps numerous times in order to create the ideal model. As such, this section will cover both of them, while focusing on the specific techniques used to handle them.
+                </p>
+                <p>
+                    After the data has been processed and the models have been chosen, the next step is to train the chosen models using the data. 
+                    For evaluation's sake, the data has to be split into data used during training and data used during testing. This is to prevent the model 
+                    from memorizing the test data, so that its true performance can be accurately discerned. Techincally, there is supposed to be a separate validation test for 
+                    tuning <span class="extraInfo" title="Configurable parts of a model's learning process (Wikipedia, (n.d.).)">hyperparameters</span> as well, but the technique used for tuning 
+                    in this project will automatically split the training data further, so it is not a concern here.
+                </p>
+                <div class="subPoint">
+                    <h3 id="myModelEvaluation">Model Evaluation</h3>
+                    <p>
+                        I would like to explain some model evaluation metrics for classification models before continuing further. 
+                        When a model makes a prediction for a class, the prediction can be classified into four different types specifically:
+                        <span class="extraInfo" title="Where the model correctly predicted it was the class">True positive</span>, <span class="extraInfo" title="Where the model correctly predicted that it wasn't that class">true negative</span>, 
+                        <span class="extraInfo" title="Where the model incorrectly predicted it was the class">false positive</span>, and <span class="extraInfo" title="Where the model incorrectly predicted that it wasn't the class">false negative</span>.
+                    </p>
+                    <div class="imgContainer">
+                        <img src="images/tpfpdiagram.svg" alt="A diagram explaining true positive, true negative, false positive, and false negative.">
+                        <p>
+                            <i>Note. This figure explains the true/false positive/negative concept mentioned in the paragraph above.</i>
+                        </p>
+                    </div>
+                    <p>
+                        Most metrics are derivatives of the above four types, with each metric targeting different combinations. For example, <span class="extraInfo" title="TP / (TP + FP)">precision</span> measures how often the model is correct if 
+                        it predicts positively, <span class="extraInfo" title="TP / (TP + FN)">recall</span> measures the percentage of positive cases the model manages to catch, and <span class="extraInfo" title="2 * ((Precision * Recall) / (Precision + Recall))">F1 score</span> is a score that balances both precision and recall.
+                    </p>
+                </div>
+                <p>
+                    In this project, I utilized certain techniques to handle both evaluation and training in tandem, namely GridSearchCV and HalvingGridSearchCV. 
+                    GridSearchCV is a technique where the programmer passes in a "grid" of hyperparameters they would like to test and the metrics the programmer would like the 
+                    model to be scored on, then GridSearchCV would try out every possible combination in the grid and output the one with the highest score in the chosen metric. 
+                    However, this technique can take an incredibly long time to run, as it has to create one model for every single combination. For example, if the programmer wanted to test 
+                    7 different hyperparameters and 5 values for each, GridSearchCV would have to train 78,125 models. This is where HalvingGridSearchCV comes in. 
+                    Rather than testing every single possible combination on large datasets, which takes more time, HalvingGridSearchCV trains all the models on a small cut of the data, removes the bottom 
+                    third of the models, trains the remaining ones on a larger dataset, and then continues to remove and train until there is one final model.
+                </p>
+                <p>
+                    Using both techniques, I trained and selected one of each of the model types. Sadly, I have to admit that my models did not perform very well even after hyperparameter tuning. Some of the models' selected 
+                    features are also precisely the opposite of current medical literature, which is unusual, as all three models chose that feature for some reason I cannot currently fathom. I plan to continue investigating these issues after the camp ends.
+                </p>
+            </section>
+            <section>
+                <h2 id="SHAP">SHapley Additive eXplanations (SHAP)</h2>
+                <p>
+                    The Shapley value is a method proposed by Lloyd Shapley in 1951 from cooperative game theory that is used to fairly distribute the total contribution of each player in a group on an outcome.   
+                </p>
+                <p>
+                    In Python, there is a library based on the Shapley value which is known as SHapley Additive eXplanations. As its name suggests, 
+                    the SHAP library is used in order to output the numerical impact of each feature on the outcome. When SHAP analyzes a model, 
+                    it determines the model's baseline value which is what the model would answer if none of the features had any impact at all. Hypothetically if a model's 
+                    final answer were 0.7 and the baseline value was 0.5, perhaps SHAP would say feature 1 added 0.1, feature 2 subtracted 0.2, and feature 3 added 0.3 ending at the answer which was 0.7.
+                </p>
+                <p>
+                    In this project, SHAP was implemented for the purpose of checking the logic behind the models as well as each individual decision made. 
+                    Some of the feature weights were, logically sound, for example the number of years smoked increased the probability that the model would predict that the person would develop dementia which 
+                    is medically supported (Alzheimer's Society, n.d.-b). However, some were precisely the opposite of medical literature, such as the models' determination that previous cardiological issues was associated with a decreased 
+                    risk of dementia which is troubling (Fisher Center for Alzheimer's Research Foundation, 2026).
+                </p>
+            </section>
+            <section>
+                <h2 id="Conclusion">Conclusion</h2>
+                <p>In summary, during the duration of the camp, a total of three models were created, a random forest model, a LightGBM model, and a XGBoost model. While none of the three performed particularly well during evaluation, 
+                    the basis behind some of the features selected by the final models were sound, even if certain others had issues. Although this brings the blog post to a close, this is certainly not the end of my foray into machine learning. I hope 
+                    to be able to improve my models further and update this post again someday.
                 </p>
             </section>
             <section>
@@ -292,7 +420,9 @@
             </section>
             <section>
                 <h2 id="References">References</h2>
-                <p>Alzheimer's Society. (n.d.). <i>Risk factors for Alzheimer's disease.</i> Retrieved November 1, 2026, from <a href="https://www.alzheimers.org.uk/about-dementia/types-dementia/who-gets-alzheimers-disease">https://www.alzheimers.org.uk/about-dementia/types-dementia/who-gets-alzheimers-disease</a></p>
+                <p>Alzheimer's Society. (n.d.-a). <i>Risk factors for Alzheimer's disease.</i> Retrieved November 1, 2026, from <a href="https://www.alzheimers.org.uk/about-dementia/types-dementia/who-gets-alzheimers-disease">https://www.alzheimers.org.uk/about-dementia/types-dementia/who-gets-alzheimers-disease</a></p>
+                <p>Alzheimer's Society. (n.d.-b). <i>Smoking and the risk of dementia.</i> Retrieved November 3, 2026, from <a href="https://www.alzheimers.org.uk/about-dementia/managing-the-risk-of-dementia/reduce-your-risk-of-dementia/smoking">https://www.alzheimers.org.uk/about-dementia/managing-the-risk-of-dementia/reduce-your-risk-of-dementia/smoking</a></p>
+                <p>Fisher Center for Alzheimer's Research Foundation. <i>How Heart Health can Affect your Alzheimer's Risk.</i> Retrieved November 3, 2026, from <a href="https://www.alzinfo.org/articles/diagnosis/how-heart-health-can-affect-your-alzheimers-risk/">https://www.alzinfo.org/articles/diagnosis/how-heart-health-can-affect-your-alzheimers-risk/</a></p>
                 <p>Murel, J. & Kavlakoglu E. (n.d.). <i>What are classification models?</i> Retrieved November 2, 2026, from <a href="https://www.ibm.com/think/topics/classification-models">https://www.ibm.com/think/topics/classification-models</a></p>
                 <p>Organisation for Economic Co-operation and Development. (2025, November 27). <i>Pensions at a glance 2025.</i> Retrieved November 2, 2026, from <a href="https://www.oecd.org/en/publications/2025/11/pensions-at-a-glance-2025_76510fe4/full-report/current-retirement-ages_0f63b747.html">https://www.oecd.org/en/publications/2025/11/pensions-at-a-glance-2025_76510fe4/full-report/current-retirement-ages_0f63b747.html</a></p>
                 <p>UN Population Division. (n.d.). <i>World Population Prospects.</i> World Bank Open Data. Retrieved November 1, 2026, from <a href="https://data.worldbank.org/indicator/SP.POP.65UP.TO.ZS">https://data.worldbank.org/indicator/SP.POP.65UP.TO.ZS</a></p>
