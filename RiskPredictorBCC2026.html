@@ -317,7 +317,7 @@
                 <p>
                     After the data has been processed and the models have been chosen, the next step is to train the chosen models using the data. 
                     For evaluation's sake, the data has to be split into data used during training and data used during testing. This is to prevent the model 
-                    from memorizing the test data, so that its true performance can be accurately discerned. Techincally, there is supposed to be a separate validation test for 
+                    from memorizing the test data, so that its true performance can be accurately discerned. Technically, there is supposed to be a separate validation test for 
                     tuning <span class="extraInfo" title="Configurable parts of a model's learning process (Wikipedia, (n.d.).)">hyperparameters</span> as well, but the technique used for tuning 
                     in this project will automatically split the training data further, so it is not a concern here.
                 </p>
@@ -363,11 +363,11 @@
                     In Python, there is a library based on the Shapley value which is known as SHapley Additive eXplanations. As its name suggests, 
                     the SHAP library is used in order to output the numerical impact of each feature on the outcome. When SHAP analyzes a model, 
                     it determines the model's baseline value which is what the model would answer if none of the features had any impact at all. Hypothetically if a model's 
-                    final answer were 0.7 and the baseline value was 0.5, perhaps SHAP would say feature 1 added 0.1, feature 2 subtracted 0.2, and feature 3 added 0.3 ending at the answer which was 0.7.
+                    final answer were 0.7 and the baseline value was 0.5, perhaps SHAP would say feature 1 added 0.1, feature 2 subtracted 0.2, and feature 3 added 0.3 which sums up to 0.7.
                 </p>
                 <p>
                     In this project, SHAP was implemented for the purpose of checking the logic behind the models as well as each individual decision made. 
-                    Some of the feature weights were, logically sound, for example the number of years smoked increased the probability that the model would predict that the person would develop dementia which 
+                    Some of the feature weights were logically sound, for example the number of years smoked increased the probability that the model would predict that the person would develop dementia which 
                     is medically supported (Alzheimer's Society, n.d.-b). However, some were precisely the opposite of medical literature, such as the models' determination that previous cardiological issues was associated with a decreased 
                     risk of dementia which is troubling (Fisher Center for Alzheimer's Research Foundation, 2026).
                 </p>
