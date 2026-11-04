@@ -79,8 +79,8 @@
                     As shown in the following figure, the percentage of people over 65 is growing over the years.
                 </p>
                 <div class="btn-group">
-                    <button onclick="switchChart('AgingSocietyWorldGraphContainer', 'AgingSocietyCountriesGraphContainer')">Show World Graph</button>
-                    <button onclick="switchChart('AgingSocietyCountriesGraphContainer', 'AgingSocietyWorldGraphContainer')">Show Countries Graph</button>
+                    <button onclick="switchChart('AgingSocietyWorldGraphContainer', ['AgingSocietyCountriesGraphContainer'])">Show World Graph</button>
+                    <button onclick="switchChart('AgingSocietyCountriesGraphContainer', ['AgingSocietyWorldGraphContainer'])">Show Countries Graph</button>
                 </div>
                 <div id="AgingSocietyWorldGraphContainer" class="graph">
                     <canvas id="AgingSocietyWorldGraph"></canvas>
@@ -375,6 +375,32 @@
                     is medically supported (Alzheimer's Society, n.d.-b). However, some were precisely the opposite of medical literature, such as the models' determination that previous cardiological issues was associated with a decreased 
                     risk of dementia which is troubling (Fisher Center for Alzheimer's Research Foundation, 2026).
                 </p>
+                <div class="btn-group">
+                    <button onclick="switchChart('rf',['lgbm','xgb'])">RF</button>
+                    <button onclick="switchChart('lgbm',['rf','xgb'])">LightGBM</button>
+                    <button onclick="switchChart('xgb',['rf','lgbm'])">XGBoost</button>
+                </div>
+                <div id="rf" class="imgContainer">
+                    <img src="images/rf.png" alt="SHAP plot for Random Forest model.">
+                    <p>
+                        <i>Note. </i> This figure contains the SHAP plot for the Random Forest model. Each individual dot on the graph represents a visit 
+                        in the dataset, with its horizontal position representing how it impacted the output.
+                    </p>
+                </div>
+                <div id="lgbm" class="imgContainer hidden">
+                    <img src="images/lgbm.png" alt="SHAP plot for LightGBM model.">
+                    <p>
+                        <i>Note. </i> This figure contains the SHAP plot for the LightGBM model. Each individual dot on the graph represents a visit 
+                        in the dataset, with its horizontal position representing how it impacted the output.
+                    </p>
+                </div>
+                <div id="xgb" class="imgContainer hidden">
+                    <img src="images/xgb.png" alt="SHAP plot for XGBoost model.">
+                    <p>
+                        <i>Note. </i> This figure contains the SHAP plot for the XGBoost model. Each individual dot on the graph represents a visit 
+                        in the dataset, with its horizontal position representing how it impacted the output.
+                    </p>
+                </div>
             </section>
             <section>
                 <h2 id="Conclusion">Conclusion</h2>
